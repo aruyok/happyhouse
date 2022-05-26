@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.mapper.HouseCommentMapper">
+	<insert id="commentRegist" parameterType="HouseComment">
+		insert into house_comment(username, createtime, comment, userid, aptCode)
+		values(#{username}, now(), #{comment},#{userid}, #{aptCode})
+	</insert>
+	
+	<select id="commentList" parameterType="int" resultType="HouseComment">
+		select username, comment, createtime, board_num, userid
+		from house_comment
+		where aptCode = #{aptCode}
+	</select>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="delete" parameterType="int">
+		delete 
+		from house_comment
+		where board_num = #{num}
+	</delete>
+	
+	<update id="update" parameterType="HouseComment">
+		update house_comment
+		   set comment = #{comment}
+		 where board_num = #{board_num}
+	</update>
+</mapper>

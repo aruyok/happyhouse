@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+	
+<mapper namespace="com.ssafy.mapper.BookMarkMapper">
+	<select id="getbookmark" parameterType="String" resultType="HouseInfoDto">
+		select h.aptCode, h.aptName, h.dongName, h.buildYear, h.jibun, h.hit
+		from houseinfo h join bookmark b
+		on h.aptCode = b.aptCode 
+		join ssafy_member m
+		on m.userid = b.userid
+		where m.userid = #{userid}
+		
+	</select>
+
+
+	<insert id="Upload" parameterType="BookMark">
+		insert into bookmark(date, aptCode, userid)
+		select now(), #{aptCode}, #{userid} from dual
+		where not exists
+		(select aptCode, userid from bookmark
+		where aptCode=#{aptCode} and userid=#{userid});
+	</insert>
+	
+
+	<delete id="Delete" parameterType="String">
+		delete 
+		from bookmark 
+		where aptCode = #{aptCode} and userid=#{userid}
+	</delete>
+</mapper>

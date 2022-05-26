@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.mapper.BoardMapper">
+
+	<select id="boardList" resultType="Board">
+		select num, createtime, title, content, writername, hit
+		from board
+		order by num desc
+	</select>
+	
+	<select id="boardDetail" parameterType="int" resultType="Board">
+		select num, createtime, title, content, writername
+		from board
+		where num= #{num}
+	</select>
+	
+	<insert id="writeBoard" parameterType="Board">
+		insert into board(createtime, title, content)
+		values(now(), #{title}, #{content})
+	</insert>
+	
+	<!-- 게시글 수정 -->
+	<update id="updateBoard" parameterType="Board">
+		update board 
+		   set title = #{title}, 
+		   	   content = #{content}
+		 where num = #{num}
+	</update>
+	
+	<!-- 게시글 삭제 -->
+	<delete id="deleteBoard" parameterType="int">
+		delete 
+		from board 
+		where num = #{num}
+	</delete>
+	
+	<select id="boardGetHit" resultType="Board">
+		select num, hit
+		from board
+	</select>
+	
+	<!-- 게시글 수정 -->
+	<update id="boardPutHit" parameterType="Board">
+		update board 
+		   set hit = #{hit}
+		 where num = #{num}
+	</update>
+</mapper>

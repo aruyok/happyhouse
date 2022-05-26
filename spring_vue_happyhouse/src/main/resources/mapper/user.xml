@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="com.ssafy.mapper.UserMapper">	
+
+	<select id="getUserInfo" parameterType="String"
+		resultType="userDto">
+		select *
+		from ssafy_member
+		where userid = #{id}
+	</select>
+	
+	<select id="getLogin" parameterType="String" 
+		resultType="userDto">
+		select *
+		from ssafy_member
+		where userid = #{userid}
+	</select>
+
+	<update id="modify" parameterType="UserDto">
+		update ssafy_member
+		set userpwd = #{userpwd}, email = #{email} , username =#{username}, joindate=#{joinDate}
+		where userid = #{userid}
+	</update>
+
+	<delete id="delete" parameterType="String">
+		delete
+	  	from ssafy_member
+	  	where userid=#{userid}
+		
+	</delete>
+
+	<select id="userInfo" parameterType="String"
+		resultType="UserDto">
+		select userid, username, email, joindate, role
+		from ssafy_member
+		where userid = #{userid}
+	</select>
+	
+	<select id="login" parameterType="UserDto" resultType="UserDto">
+		select username, userid, role
+		from ssafy_member
+		where userid= #{userid} and userpwd = #{userpwd}
+	</select>
+
+	<insert id="regist" parameterType="UserDto">
+		insert into ssafy_member (userid, username, userpwd, email, joindate)
+		values (#{userid}, #{username}, #{userpwd}, #{email}, now())
+	</insert>
+	<select id="getSalt" parameterType="userDto" resultType="String">
+		select salt
+		from ssafy_member
+		where userid = #{userid}
+	</select>
+	
+	<select id="findPassword" parameterType="String" resultType="String">
+		select userpwd
+		from ssafy_member
+		where userid = #{userid} and username= #{username} and email= #{email}
+	</select>
+	
+</mapper>
