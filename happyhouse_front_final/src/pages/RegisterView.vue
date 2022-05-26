@@ -15,7 +15,6 @@
             align="left"
           >
             <b-form class="text-left">
-              <b-alert show variant="danger">아이디가 이미 존재합니다.</b-alert>
               <b-form-group label="아이디:" label-for="userid">
                 <b-form-input
                   id="userid"
