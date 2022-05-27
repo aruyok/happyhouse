@@ -33,8 +33,8 @@ CREATE TABLE `house_comment` (
   PRIMARY KEY (`board_num`),
   KEY `fk_house_comment_ssafy_member1_idx` (`userid`),
   KEY `fk_house_comment_num` (`num`),
-  CONSTRAINT `fk_house_comment_ssafy_member1` FOREIGN KEY (`userid`) REFERENCES `ssafy_member` (`userid`)
-) ENGINE=InnoDB AUTO_INCREMENT=141 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+  CONSTRAINT `fk_house_comment_ssafy_member1` FOREIGN KEY (`userid`) REFERENCES `ssafy_member` (`userid`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=142 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +43,7 @@ CREATE TABLE `house_comment` (
 
 LOCK TABLES `house_comment` WRITE;
 /*!40000 ALTER TABLE `house_comment` DISABLE KEYS */;
-INSERT INTO `house_comment` VALUES ('김싸피2','저는 ~입니다!','2022-05-24 09:07:17',113,'admin',4,NULL),('박싸피','gdgd','2022-05-25 02:04:42',126,'ssafy3',0,NULL),('박싸피','얼마에요 ?','2022-05-25 13:57:56',135,'ssafy3',4,NULL),('박싸피','여기 집 왜이렇게 비싸요?','2022-05-25 13:58:04',136,'ssafy3',4,NULL),('abc','아 여기 역세권이라 비싸요!','2022-05-25 21:25:43',139,'abc',4,NULL);
+INSERT INTO `house_comment` VALUES ('김싸피2','저는 ~입니다!','2022-05-24 09:07:17',113,'admin',4,NULL),('박싸피','gdgd','2022-05-25 02:04:42',126,'ssafy3',0,NULL),('박싸피','얼마에요 ?','2022-05-25 13:57:56',135,'ssafy3',4,NULL),('박싸피','여기 집 왜이렇게 비싸요?','2022-05-25 13:58:04',136,'ssafy3',4,NULL);
 /*!40000 ALTER TABLE `house_comment` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -56,4 +56,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-27  3:41:04
+-- Dump completed on 2022-05-27 10:01:14
