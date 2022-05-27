@@ -20,7 +20,7 @@
 
 	<update id="modify" parameterType="UserDto">
 		update ssafy_member
-		set userpwd = #{userpwd}, email = #{email} , username =#{username}, joindate=#{joinDate}
+		set userpwd = #{userpwd}, email = #{email} , username =#{username}, joindate=#{joindate}
 		where userid = #{userid}
 	</update>
 
